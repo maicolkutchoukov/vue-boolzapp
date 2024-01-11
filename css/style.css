@@ -27,7 +27,7 @@
     border: 2px solid blue;
 }
 
-.col-5{
+.col-5, .col-7{
     height: 100%;
 }
 
@@ -153,9 +153,10 @@
     background-image: url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png");
     background-size: 100%;
     padding: 10px;
+    overflow-y: scroll;
 }
 
-.chat-screen > div{
+.chat-screen > div .message{
     max-width: 60%;
     display: flex;
     padding: 5px 50px 5px 10px;
@@ -173,7 +174,7 @@
     right: 5px;
 }
 
-.chat-screen .sender{
+.chat-screen div .sender{
     background-color: #D5F9BA;
 }
 

@@ -50,7 +50,8 @@
                             </div>
                             <ul id="contact-list">
                                 <li class="d-flex"
-                                    v-for="(contact, i) in contacts">
+                                    v-for="(contact, i) in contacts"
+                                    @click="openNewChat(i)">
                                     <div class="contact-image">
                                         <img class="img-fluid" :src="contact.avatar" alt="">
                                     </div>
@@ -82,18 +83,31 @@
 
                                 </div>
                             </div>
-                            <div class="chat-screen d-flex flex-column px-3">
-                                <div class="align-self-end sender">
-                                    <div class="message">Come stai?</div>
+                            <div class="chat-screen">
+                                <!-- <div v-for="(contact, i) in contacts">
+                                    
+                                    <div class="message"
+                                        v-for="(msg, j) in contact.messages"
+                                        :class="{
+                                            'sender' : msg.status == 'sent',
+                                            'align-self-end' : msg.status == 'sent',
+                                            'align-self-start' : msg.status == 'received',
+                                        }">
+                                        {{msg.message}}
+                                    </div>
                                     <div class="time-message">12:00</div>
-                                </div>
-                                <div class="align-self-end sender">
-                                    <div class="message">Come stai?</div>
-                                    <div class="time-message">12:00</div>
-                                </div>
-                                <div class="align-self-start">
-                                    <div class="message">Come stai?</div>
-                                    <div class="time-message">12:00</div>
+                                </div> -->
+                                <div class=" d-flex flex-column px-3">
+                                    <div class="message"
+                                        v-for="(msg, j) in contacts[activeChat].messages"
+                                        :class="{
+                                            'sender' : msg.status == 'sent',
+                                            'align-self-end' : msg.status == 'sent',
+                                            'align-self-start' : msg.status == 'received',
+                                        }">
+                                        {{msg.message}}
+                                    <div class="time-message">{{ msg.date }}</div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="chat-text d-flex justify-content-around align-items-center">
