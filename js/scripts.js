@@ -237,9 +237,6 @@ createApp({
                 }, 2000)
             }
         },
-        response(){
-
-        },
         newTimeDate(){
             const dataOra = new Date();
             const data = dataOra.toLocaleDateString();
@@ -249,6 +246,18 @@ createApp({
                 date : `${data} ${ora}`,
                 message : this.newMessage,
                 status : 'sent'
+            }
+        },
+        estractTime(){
+            const times = [];
+            for (let i = 0; i < this.contacts[this.activeChat].messages.length; i++){
+            let time = this.contacts[this.activeChat].messages[i].date.split(' ');
+            let hours = time[1].split(':');
+            let hour = hours[0] + ':' + hours[1];
+            let newKey = 'time';
+            let newValue = hour;
+            let newArr = this.contacts[this.activeChat].messages
+            newArr[i][newKey] = newValue
             }
         }
     }

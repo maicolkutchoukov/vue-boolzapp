@@ -93,14 +93,14 @@
                                             'align-self-start' : msg.status == 'received',
                                         }">
                                         {{msg.message}}
-                                    <div class="time-message">{{ msg.date }}</div>
+                                    <div class="time-message">{{estractTime()}}{{ msg.time }}</div>
                                     </div>
                                 </div>
                             </div>
                             <div class="chat-text d-flex justify-content-around align-items-center">
                                 <i class="fa-regular fa-face-smile fa-xl"></i>
                                 <input v-model="newMessage"
-                                @keyup.enter="addNewMessage()"
+                                @keyup.enter="addNewMessage(), estractTime()"
                                  type="text" placeholder="Scrivi un messaggio..">
                                 <i class="fa-solid fa-microphone fa-xl"></i>
                             </div>
