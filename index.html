@@ -22,16 +22,39 @@
                 <div class="my-container">
                     <div class="row">
                         <div class="col-5">
-                            <div class="user"></div>
-                            <div class="disable-notifications"></div>
-                            <div class="search"></div>
+                            <div class="user d-flex align-items-center">
+                                <div class="user-image">
+                                    <img src="/img/avatar_io.jpg" alt="">
+                                </div>
+                                <div class="user-name">Sofia</div>
+                                <div class="user-options d-flex justify-content-around">
+                                    <i class="fa-solid fa-circle-notch fa-xl"></i>
+                                    <i class="fa-solid fa-message fa-xl"></i>
+                                    <i class="fa-solid fa-ellipsis-vertical fa-xl"></i>
+                                </div>
+                            </div>
+                            <div class="disable-notifications d-flex align-items-center">
+                                <div class="badge-notification">
+                                    <i class="fa-solid fa-bell-slash fa-2xs"></i>
+                                </div>
+                                <div class="ms-2">
+                                    <p class="mb-0">Ricevi notifiche dei nuovi messaggi</p>
+                                    <a href="#">Attiva/Disattiva notifiche</a>
+                                </div>
+                            </div>
+                            <div class="search">
+                                <div class="search-bar">
+                                    <span class="text-center"><i class="fa-solid fa-magnifying-glass"></i></span>
+                                    <input type="text" placeholder="Cerca o inizia una nuova chat!">
+                                </div>
+                            </div>
                             <ul id="contact-list">
                                 <li class="d-flex"
                                     v-for="(contact, i) in contacts">
                                     <div class="contact-image">
                                         <img class="img-fluid" :src="contact.avatar" alt="">
                                     </div>
-                                    <div class="contact-text">
+                                    <div class="contact-text d-flex flex-column justify-content-center">
                                         <div class="contact-name">
                                             {{contact.name}} 
                                         </div>
