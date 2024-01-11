@@ -91,7 +91,7 @@
 
 .user-image img{
     border-radius: 50%;
-    width: 90%;
+    width: 80%;
     padding: 5px;
 }
 
@@ -127,18 +127,71 @@
 .chat-info{
     width: 100%;
     height: 10%;
-    border: 1px solid orange;
+    background-color: #EAEAEA;
+}
+
+.chat-image{
+    width: 10%;
+    margin-left: 10px;
+}
+.chat-image img{
+    width: 100%;
+    border-radius: 50%;
+}
+
+.chat-name{
+    width: 70%;
+}
+.chat-options{
+    width: 20%;
 }
 
 .chat-screen{
     width: 100%;
-    height: 80%;
+    height: 85%;
     border: 1px solid orangered;
+    background-image: url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png");
+    background-size: 100%;
+    padding: 10px;
+}
+
+.chat-screen > div{
+    max-width: 60%;
+    display: flex;
+    padding: 5px 50px 5px 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: white;
+    position: relative;
+}
+
+.time-message{
+    font-size: 10px;
+    color: rgba(210, 205, 205);
+    position: absolute;
+    bottom: 3px;
+    right: 5px;
+}
+
+.chat-screen .sender{
+    background-color: #D5F9BA;
 }
 
 .chat-text{
     width: 100%;
-    height: 10%;
-    border: 1px solid aqua;
+    height: 5%;
+    background-color: #F3EEE9;
 }
 
+.chat-text input{
+    width: 80%;
+    height: 80%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #EAEAEA;
+}
+
+i{
+    cursor: pointer;
+    color: grey;
+}
