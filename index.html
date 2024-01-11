@@ -73,7 +73,7 @@
                                     <img src="img/avatar_1.jpg" alt="">
                                 </div>
                                 <div class="chat-name">
-                                    <p class="mb-0">Michele</p>
+                                    <p class="mb-0"> {{contacts[activeChat].name}} </p>
                                     <p class="mb-0">Ultimo accesso oggi alle 12:00</p>
                                 </div>
                                 <div class="chat-options d-flex justify-content-between pe-4">
@@ -84,19 +84,6 @@
                                 </div>
                             </div>
                             <div class="chat-screen">
-                                <!-- <div v-for="(contact, i) in contacts">
-                                    
-                                    <div class="message"
-                                        v-for="(msg, j) in contact.messages"
-                                        :class="{
-                                            'sender' : msg.status == 'sent',
-                                            'align-self-end' : msg.status == 'sent',
-                                            'align-self-start' : msg.status == 'received',
-                                        }">
-                                        {{msg.message}}
-                                    </div>
-                                    <div class="time-message">12:00</div>
-                                </div> -->
                                 <div class=" d-flex flex-column px-3">
                                     <div class="message"
                                         v-for="(msg, j) in contacts[activeChat].messages"
@@ -112,7 +99,9 @@
                             </div>
                             <div class="chat-text d-flex justify-content-around align-items-center">
                                 <i class="fa-regular fa-face-smile fa-xl"></i>
-                                <input type="text" placeholder="Scrivi un messaggio..">
+                                <input v-model="newMessage"
+                                @keyup.enter="addNewMessage()"
+                                 type="text" placeholder="Scrivi un messaggio..">
                                 <i class="fa-solid fa-microphone fa-xl"></i>
                             </div>
                         </div>

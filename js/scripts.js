@@ -49,6 +49,7 @@ createApp({
     data() {
         return {
             activeChat: 0,
+            newMessage: '',
             contacts: [
                 {
                     name: 'Michele',
@@ -216,9 +217,41 @@ createApp({
     },
     methods: {
         openNewChat(i){
-            console.log('entra')
             this.activeChat = i
+        },
+        addNewMessage(){
+            if (this.newMessage.trim().length > 0){
+                this.newTimeDate()
+                this.contacts[this.activeChat].messages.push(newMsg);
+                console.log(newMsg)
+                this.newMessage = ''
+                setTimeout(() => {
+                    this.newTimeDate();
+                    const response = 'Ok!';
+                    newMsg.message = 'Ok!'
+                    newMsg.status = 'received'
+                    console.log('si');
+                    console.log(newMsg)
+                    
+                    this.contacts[this.activeChat].messages.push(newMsg)
+                }, 2000)
+            }
+        },
+        response(){
+
+        },
+        newTimeDate(){
+            const dataOra = new Date();
+            const data = dataOra.toLocaleDateString();
+            const ora = dataOra.toLocaleTimeString();
+            console.log(data, ora)
+            return newMsg = {
+                date : `${data} ${ora}`,
+                message : this.newMessage,
+                status : 'sent'
+            }
         }
     }
   // Monto l'istanza di Vue in pagina
 }).mount('#app');
+
