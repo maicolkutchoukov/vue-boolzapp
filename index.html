@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Template HTML CSS</title>
+        <title>BOOLZAP</title>
 
         <!-- FONT AWESOME -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -17,10 +17,40 @@
     </head>
     <body>
         
-        <div id="app">
-            <h1>
-                {{ message }}
-            </h1>
+        <div id="main-container">
+            <div id="app">
+                <div class="my-container">
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="user"></div>
+                            <div class="disable-notifications"></div>
+                            <div class="search"></div>
+                            <ul id="contact-list">
+                                <li class="d-flex"
+                                    v-for="(contact, i) in contacts">
+                                    <div class="contact-image">
+                                        <img class="img-fluid" :src="contact.avatar" alt="">
+                                    </div>
+                                    <div class="contact-text">
+                                        <div class="contact-name">
+                                            {{contact.name}} 
+                                        </div>
+                                        <div class="contact-last-message">
+                                            Ultimo messaggio inviato
+                                        </div>
+                                    </div>
+                                    
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-7">
+                            <div class="chat-info"></div>
+                            <div class="chat-screen"></div>
+                            <div class="chat-text"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Mio Script -->
