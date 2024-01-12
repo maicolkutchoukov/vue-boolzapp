@@ -24,7 +24,7 @@
                         <div class="col-5">
                             <div class="user d-flex align-items-center">
                                 <div class="user-image">
-                                    <img src="/img/avatar_io.jpg" alt="">
+                                    <img src="./img/avatar_io.jpg" alt="">
                                 </div>
                                 <div class="user-name">Sofia</div>
                                 <div class="user-options d-flex justify-content-around">
@@ -45,17 +45,21 @@
                             <div class="search">
                                 <div class="search-bar">
                                     <span class="text-center"><i class="fa-solid fa-magnifying-glass"></i></span>
-                                    <input type="text" placeholder="Cerca o inizia una nuova chat!">
+                                    {{searchContact}}
+                                    <input v-model="searchContact" type="text" placeholder="Cerca o inizia una nuova chat!">
                                 </div>
                             </div>
                             <ul id="contact-list">
-                                <li class="d-flex"
+                                <li class="d-flex align-items-center"
                                     v-for="(contact, i) in contacts"
-                                    @click="openNewChat(i)">
+                                    @click="openNewChat(i)"
+                                    :class="{
+                                        'activate-chat' : activeChat == i
+                                    }">
                                     <div class="contact-image">
                                         <img class="img-fluid" :src="contact.avatar" alt="">
                                     </div>
-                                    <div class="contact-text d-flex flex-column justify-content-center">
+                                    <div class="contact-text d-flex flex-column justify-content-center flex-grow-1">
                                         <div class="contact-name">
                                             {{contact.name}} 
                                         </div>
@@ -63,6 +67,7 @@
                                             Ultimo messaggio inviato
                                         </div>
                                     </div>
+                                    <div class="font-size">12:00</div>
                                     
                                 </li>
                             </ul>

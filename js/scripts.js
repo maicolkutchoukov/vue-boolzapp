@@ -50,10 +50,11 @@ createApp({
         return {
             activeChat: 0,
             newMessage: '',
+            searchContact: '',
             contacts: [
                 {
                     name: 'Michele',
-                    avatar: '/img/avatar_1.jpg',
+                    avatar: './img/avatar_1.jpg',
                     visible: true,
                     messages: [
                         {
@@ -193,7 +194,7 @@ createApp({
                 {
                     name: 'Davide',
                     avatar: './img/avatar_8.jpg',
-                    visible: true,
+                    visible: false,
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -212,7 +213,7 @@ createApp({
                         }
                     ],
                 }
-            ],  
+            ],
         };
     },
     methods: {
@@ -259,8 +260,9 @@ createApp({
             let newArr = this.contacts[this.activeChat].messages
             newArr[i][newKey] = newValue
             }
-        }
+
+        },
+        
     }
   // Monto l'istanza di Vue in pagina
 }).mount('#app');
-
