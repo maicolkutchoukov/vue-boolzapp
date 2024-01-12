@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>BOOLZAP</title>
+        <title>Boolzap</title>
 
         <!-- FONT AWESOME -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -45,32 +45,41 @@
                             <div class="search">
                                 <div class="search-bar">
                                     <span class="text-center"><i class="fa-solid fa-magnifying-glass"></i></span>
-                                    {{searchContact}}
-                                    <input v-model="searchContact" type="text" placeholder="Cerca o inizia una nuova chat!">
+                                    
+                                    <input v-model="searchContact"
+                                    @keyup="filterContacts()" type="text" placeholder="Cerca o inizia una nuova chat!">
                                 </div>
                             </div>
-                            <ul id="contact-list">
-                                <li class="d-flex align-items-center"
-                                    v-for="(contact, i) in contacts"
-                                    @click="openNewChat(i)"
-                                    :class="{
-                                        'activate-chat' : activeChat == i
-                                    }">
-                                    <div class="contact-image">
-                                        <img class="img-fluid" :src="contact.avatar" alt="">
-                                    </div>
-                                    <div class="contact-text d-flex flex-column justify-content-center flex-grow-1">
-                                        <div class="contact-name">
-                                            {{contact.name}} 
+
+                            
+                            
+                            <div id="contact-list">
+                                <div v-for="(contact, i) in contacts">
+                                    <div class="d-flex"
+                                        @click="openNewChat(i)"
+                                        :class="{
+                                            'activate-chat' : activeChat == i
+                                        }">
+                                    <div class="d-flex border-bottom"
+                                        v-if="contact.visible == true">
+                                        <div class="contact-image">
+                                            <img class="img-fluid" :src="contact.avatar" alt="Avatar">
                                         </div>
-                                        <div class="contact-last-message">
-                                            Ultimo messaggio inviato
+                                        <div class="contact-text d-flex flex-column justify-content-center">
+                                            <div class="contact-name">
+                                                {{contact.name}} 
+                                            </div>
+                                            <div class="contact-last-message">
+                                                {{contact.messages[contact.messages.length - 1].message}}
+                                            </div>
+                                        </div>
+                                            <div class="font-size">
+                                                {{contact.messages[contact.messages.length - 1].date.split(" ")[1]}}
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="font-size">12:00</div>
-                                    
-                                </li>
-                            </ul>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-7">
                             <div class="chat-info d-flex align-items-center">
@@ -79,7 +88,9 @@
                                 </div>
                                 <div class="chat-name">
                                     <p class="mb-0"> {{contacts[activeChat].name}} </p>
-                                    <p class="mb-0">Ultimo accesso oggi alle 12:00</p>
+                                    <p class="mb-0">Ultimo accesso alle 
+                                        {{contacts[activeChat].messages[contacts[activeChat].messages.length - 1].date.split(" ")[1]}}
+                                    </p>
                                 </div>
                                 <div class="chat-options d-flex justify-content-between pe-4">
                                     <i class="fa-solid fa-magnifying-glass fa-xl"></i>
@@ -96,9 +107,12 @@
                                             'sender' : msg.status == 'sent',
                                             'align-self-end' : msg.status == 'sent',
                                             'align-self-start' : msg.status == 'received',
-                                        }">
+                                        }"
+                                        @click="deleteMessage(j)">
                                         {{msg.message}}
                                     <div class="time-message">{{estractTime()}}{{ msg.time }}</div>
+                                        
+
                                     </div>
                                 </div>
                             </div>

@@ -11,8 +11,9 @@
 .my-container{
     max-width: 1000px;
     min-height: 700px;
-    margin: 0 auto;
+    margin: 20px auto;
     padding-top: 30px;
+    border: 2px solid black;
 }
 
 .row{
@@ -76,10 +77,8 @@
 
 }
 
-#contact-list > *{
-    height: 80px;
-    list-style: none;
-    border-bottom: 1px solid #EAEAEA;
+.contact-text{
+    width: 70%;
 }
 
 .contact-image, .user-image{
@@ -201,4 +200,5 @@ i{
 .font-size{
     font-size: 10px;
     margin-right: 8px;
+    margin-left:auto
 }

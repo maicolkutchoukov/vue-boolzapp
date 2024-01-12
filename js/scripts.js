@@ -1,6 +1,6 @@
 /*
 
-Milestone 1
+Milestone 1         OK
 Replica della grafica con la possibilità di avere messaggi scritti :
     dall’utente (verdi) 
     e dall’interlocutore (bianco) 
@@ -9,18 +9,18 @@ Visualizzazione dinamica della lista contatti:
 tramite la direttiva v-for, visualizzare 
     nome e immagine di ogni contatto
 
-Milestone 2
+Milestone 2         OK
 Visualizzazione dinamica dei messaggi: tramite la direttiva v-for, visualizzare 
     tutti i messaggi relativi al contatto attivo all’interno del pannello della conversazione
 Click sul contatto mostra la conversazione del contatto cliccato
 
-Milestone 3
+Milestone 3         OK
 Aggiunta di un messaggio: l’utente scrive un testo nella parte bassa
 e digitando “enter” il testo viene aggiunto al thread sopra, come messaggio verde
 Risposta dall’interlocutore: ad ogni inserimento di un messaggio, 
 l’utente riceverà un “ok” come risposta, che apparirà dopo 1 secondo.
 
-Milestone 4
+Milestone 4         OK
 Ricerca utenti: scrivendo qualcosa nell’input a sinistra, 
 vengono visualizzati solo i contatti il cui nome contiene le lettere inserite 
 (es, Marco, Matteo Martina -> Scrivo “mar” rimangono solo Marco e Martina)
@@ -30,7 +30,7 @@ Milestone 5 - opzionale
 Cancella messaggio: cliccando sul messaggio appare un menu 
 a tendina che permette di cancellare il messaggio selezionato
 
-Visualizzazione ora e ultimo messaggio inviato/ricevuto nella lista dei contatti 
+Visualizzazione ora e ultimo messaggio inviato/ricevuto nella lista dei contatti            OK
 -----------------------------------------------------------------------------------------------
 Consigli utili:
 Si possono trascurare le scrollbar verticali, sia nel pannello dei messaggi, che nella lista dei contatti
@@ -233,7 +233,6 @@ createApp({
                     newMsg.status = 'received'
                     console.log('si');
                     console.log(newMsg)
-                    
                     this.contacts[this.activeChat].messages.push(newMsg)
                 }, 2000)
             }
@@ -250,19 +249,31 @@ createApp({
             }
         },
         estractTime(){
-            const times = [];
             for (let i = 0; i < this.contacts[this.activeChat].messages.length; i++){
             let time = this.contacts[this.activeChat].messages[i].date.split(' ');
             let hours = time[1].split(':');
             let hour = hours[0] + ':' + hours[1];
             let newKey = 'time';
             let newValue = hour;
-            let newArr = this.contacts[this.activeChat].messages
-            newArr[i][newKey] = newValue
+            let newObj = this.contacts[this.activeChat].messages
+            newObj[i][newKey] = newValue
             }
-
         },
-        
+        filterContacts(){
+            for (let i = 0; i < this.contacts.length; i++) {
+                console.log(this.contacts[i].name.toLowerCase())
+                if (this.contacts[i].name.toLowerCase().includes(this.searchContact)){
+                    this.contacts[i].visible = true
+                } else {
+                    this.contacts[i].visible = false
+                }
+            } 
+        },
+        deleteMessage(i){
+            console.log(i)
+            console.log(this.contacts[this.activeChat].messages[i].message)
+            
+        }
     }
   // Monto l'istanza di Vue in pagina
 }).mount('#app');
