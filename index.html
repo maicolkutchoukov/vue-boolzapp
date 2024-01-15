@@ -18,6 +18,7 @@
     <body>
         
         <div id="main-container">
+            <div class="empty-div"></div>
             <div id="app">
                 <div class="my-container">
                     <div class="row">
@@ -69,12 +70,17 @@
                                             <div class="contact-name">
                                                 {{contact.name}} 
                                             </div>
-                                            <div class="contact-last-message">
+                                            <div v-if="contact.messages.length > 0"
+                                            class="contact-last-message">
                                                 {{contact.messages[contact.messages.length - 1].message}}
                                             </div>
                                         </div>
-                                            <div class="font-size">
-                                                {{contact.messages[contact.messages.length - 1].date.split(" ")[1]}}
+                                            <div v-if="contact.messages.length > 0"
+                                            class="font-size">
+                                                <!-- {{contact.messages[contact.messages.length - 1].date.split(" ")[1]}} -->
+                                                {{contact.messages[contact.messages.length - 1].date.split(" ")[1].split(':')[0] + ':' +
+                                                contact.messages[contact.messages.length - 1].date.split(" ")[1].split(':')[1]
+                                                }}
                                             </div>
                                         </div>
                                     </div>
@@ -88,8 +94,14 @@
                                 </div>
                                 <div class="chat-name">
                                     <p class="mb-0"> {{contacts[activeChat].name}} </p>
-                                    <p class="mb-0">Ultimo accesso alle 
-                                        {{contacts[activeChat].messages[contacts[activeChat].messages.length - 1].date.split(" ")[1]}}
+                                    <p v-if="contacts[activeChat].messages.length > 0"
+                                    class="mb-0">Ultimo accesso alle 
+                                        <!-- {{contacts[activeChat].messages[contacts[activeChat].messages.length - 1].date.split(" ")[1]}} -->
+                                        {{
+                                            contacts[activeChat].messages[contacts[activeChat].messages.length - 1].date.split(" ")[1].split(':')[0]
+                                            + ':' +
+                                            contacts[activeChat].messages[contacts[activeChat].messages.length - 1].date.split(" ")[1].split(':')[1]
+                                        }}
                                     </p>
                                 </div>
                                 <div class="chat-options d-flex justify-content-between pe-4">
@@ -101,21 +113,25 @@
                             </div>
                             <div class="chat-screen">
                                 <div class=" d-flex flex-column px-3">
-                                    <div class="message"
+                                    <div v-if="contacts[activeChat].messages.length > 0"
+                                        class="d-flex flex-column px-3">
+                                        <div class="message"
                                         v-for="(msg, j) in contacts[activeChat].messages"
                                         :class="{
                                             'sender' : msg.status == 'sent',
                                             'align-self-end' : msg.status == 'sent',
                                             'align-self-start' : msg.status == 'received',
                                         }"
-                                        @click="optionMessage(j)">
+                                        @click.stop="optionMessage(j)">
                                         {{msg.message}}
                                     <div class="time-message">{{estractTime()}}{{ msg.time }}</div>
-                                        <div class="option-message">
+                                        <div v-if="visibleOptions.index === j && visibleOptions.open === true"
+                                        class="option-message">
                                             <div>Info</div>
-                                            <div @click="deleteMessage(j)">Cancella il messaggio</div>
+                                            <div @click.stop="deleteMessage(j)">Cancella il messaggio</div>
                                         </div>
 
+                                    </div>
                                     </div>
                                 </div>
                             </div>
