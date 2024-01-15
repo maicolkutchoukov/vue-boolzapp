@@ -51,7 +51,10 @@ createApp({
             activeChat: 0,
             newMessage: '',
             searchContact: '',
-            flag: '',
+            visibleOptions: {
+                index: false,
+                open: false,
+            },
             contacts: [
                 {
                     name: 'Michele',
@@ -223,10 +226,10 @@ createApp({
         },
         addNewMessage(){
             if (this.newMessage.trim().length > 0){
-                this.newTimeDate()
+                this.newTimeDate();
                 this.contacts[this.activeChat].messages.push(newMsg);
-                console.log(newMsg)
-                this.newMessage = ''
+                console.log(newMsg);
+                this.newMessage = '';
                 setTimeout(() => {
                     this.newTimeDate();
                     const response = 'Ok!';
@@ -262,26 +265,30 @@ createApp({
         },
         filterContacts(){
             for (let i = 0; i < this.contacts.length; i++) {
-                console.log(this.contacts[i].name.toLowerCase())
                 if (this.contacts[i].name.toLowerCase().includes(this.searchContact)){
-                    this.contacts[i].visible = true
+                    this.contacts[i].visible = true;
                 } else {
-                    this.contacts[i].visible = false
+                    this.contacts[i].visible = false;
                 }
             } 
         },
         optionMessage(i){
-            console.log(i)
-            console.log(this.contacts[this.activeChat].messages[i].message)
-            let messagesToDelete = document.querySelectorAll('.option-message')
-            console.log(messagesToDelete[i])
-            messagesToDelete[i].classList.add('d-block');
+            if (this.visibleOptions.index != false && this.visibleOptions.index != i){
+                this.visibleOptions.index = false;
+                this.visibleOptions.open = false;
+            }
+            this.visibleOptions.index = i;
+            this.visibleOptions.open = (this.visibleOptions.open) ? false : true;
+            console.log('prima', this.visibleOptions);
+            
+
         },
         deleteMessage(i){
-            console.log(i)
-            console.log(this.contacts[this.activeChat].messages[i])
-            this.contacts[this.activeChat].messages.splice(i,1)
-            this.messagesToDelete[i].classList.remove('d-block');
+            this.contacts[this.activeChat].messages.splice(i,1);
+            this.visibleOptions.index = false;
+            this.visibleOptions.open = false;
+            console.log(this.visibleOptions);
+
         }
     }
   // Monto l'istanza di Vue in pagina
