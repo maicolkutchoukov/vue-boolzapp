@@ -202,3 +202,12 @@ i{
     margin-right: 8px;
     margin-left:auto
 }
+
+.option-message{
+    border: 1px solid black;
+    position: absolute;
+    top: 30px;
+    right: 0;
+    z-index: 999;
+    display: none;
+}

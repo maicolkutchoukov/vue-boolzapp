@@ -51,6 +51,7 @@ createApp({
             activeChat: 0,
             newMessage: '',
             searchContact: '',
+            flag: '',
             contacts: [
                 {
                     name: 'Michele',
@@ -269,10 +270,18 @@ createApp({
                 }
             } 
         },
-        deleteMessage(i){
+        optionMessage(i){
             console.log(i)
             console.log(this.contacts[this.activeChat].messages[i].message)
-            
+            let messagesToDelete = document.querySelectorAll('.option-message')
+            console.log(messagesToDelete[i])
+            messagesToDelete[i].classList.add('d-block');
+        },
+        deleteMessage(i){
+            console.log(i)
+            console.log(this.contacts[this.activeChat].messages[i])
+            this.contacts[this.activeChat].messages.splice(i,1)
+            this.messagesToDelete[i].classList.remove('d-block');
         }
     }
   // Monto l'istanza di Vue in pagina

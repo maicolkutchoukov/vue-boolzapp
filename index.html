@@ -63,7 +63,7 @@
                                     <div class="d-flex border-bottom"
                                         v-if="contact.visible == true">
                                         <div class="contact-image">
-                                            <img class="img-fluid" :src="contact.avatar" alt="Avatar">
+                                            <img class="img-fluid" :src="contact.avatar" :alt="contact.name">
                                         </div>
                                         <div class="contact-text d-flex flex-column justify-content-center">
                                             <div class="contact-name">
@@ -108,20 +108,23 @@
                                             'align-self-end' : msg.status == 'sent',
                                             'align-self-start' : msg.status == 'received',
                                         }"
-                                        @click="deleteMessage(j)">
+                                        @click="optionMessage(j)">
                                         {{msg.message}}
                                     <div class="time-message">{{estractTime()}}{{ msg.time }}</div>
-                                        
+                                        <div class="option-message">
+                                            <div>Info</div>
+                                            <div @click="deleteMessage(j)">Cancella il messaggio</div>
+                                        </div>
 
                                     </div>
                                 </div>
                             </div>
                             <div class="chat-text d-flex justify-content-around align-items-center">
-                                <i class="fa-regular fa-face-smile fa-xl"></i>
+                                <i class="fa-regular fa-face-smile"></i>
                                 <input v-model="newMessage"
                                 @keyup.enter="addNewMessage(), estractTime()"
                                  type="text" placeholder="Scrivi un messaggio..">
-                                <i class="fa-solid fa-microphone fa-xl"></i>
+                                <i class="fa-solid fa-microphone"></i>
                             </div>
                         </div>
                     </div>
